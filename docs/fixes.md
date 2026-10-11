@@ -34,8 +34,9 @@ Calling the floor shown on the displays does nothing because that contact still 
 - `ElevatorContactBlockEntityMixin` (tail of `write`): a contact that hasn't ticked yet writes
   back the target it loaded, and a column without a target writes none. No more phantom 0.
 - `ElevatorContraptionMixin` (head of `getCurrentTargetY`): heals worlds saved before the fix.
-  When the column's target has no contact block, it calls the elevator to the contact nearest
-  the cab, the same as a redstone call there. Each target is checked once (cached Y), so the
+  When the column's target has no contact of this column (same X/Z and facing; since 0.1.1),
+  it calls the elevator to the contact nearest the cab, the same as a redstone call there.
+  A real floor at Y 0 is left alone: only a target without a contact is repaired. Each target is checked once (cached Y), so the
   steady per-tick cost is one int compare. It skips unloaded targets and contacts that haven't
   ticked in yet.
 

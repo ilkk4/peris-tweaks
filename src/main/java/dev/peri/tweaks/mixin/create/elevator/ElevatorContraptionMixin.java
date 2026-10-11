@@ -40,7 +40,8 @@ public abstract class ElevatorContraptionMixin {
         if (level.isClientSide()) {
             return;
         }
-        ElevatorColumn column = ElevatorColumn.get(level, getGlobalColumn());
+        ElevatorColumn.ColumnCoords coords = getGlobalColumn();
+        ElevatorColumn column = ElevatorColumn.get(level, coords);
         if (column == null || !column.isTargetAvailable()) {
             return;
         }
@@ -52,7 +53,9 @@ public abstract class ElevatorContraptionMixin {
         if (!level.isLoaded(targetPos)) {
             return;
         }
-        if (level.getBlockState(targetPos).getBlock() instanceof ElevatorContactBlock) {
+        // A contact of this column, not one of a neighbouring column facing another way.
+        if (level.getBlockState(targetPos).getBlock() instanceof ElevatorContactBlock
+                && coords.equals(ElevatorContactBlock.getColumnCoords(level, targetPos))) {
             peris_tweaks$checkedTarget = target;
             return;
         }
