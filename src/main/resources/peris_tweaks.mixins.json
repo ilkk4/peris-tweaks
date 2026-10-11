@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "dev.peri.tweaks.mixin",
+  "plugin": "dev.peri.tweaks.mixin.OptionalModMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "create.elevator.ElevatorContactBlockEntityMixin",
+    "create.elevator.ElevatorContraptionMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
